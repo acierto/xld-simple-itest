@@ -1,0 +1,61 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://nexus.xebialabs.com/nexus/content/repositories/digitalai-public'
+        }
+        maven {
+            url 'https://oss.sonatype.org/service/local/repositories/releases/content'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("com.xebialabs.gradle.plugins:integration-server-gradle-plugin:10.3.0-902.1430")
+    }
+}
+
+plugins {
+    id 'scala'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "integration.server"
+
+integrationServer {
+    clis {
+        cli {
+            version = "10.3.0-902.941"
+        }
+    }
+    servers {
+        controlPlane {
+            dockerImage = "xebialabs/xl-deploy"
+            version = "10.2.2"
+        }
+    }
+    tests {
+        testScenario01 {
+            baseDirectory = file("src/test/jython/scenarios")
+            extraClassPath = [file("src/test/jython/py-classpath")]
+            tearDownScripts = ['teardown.py']
+        }
+    }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir "src/test/jython"
+        }
+    }
+}
+
+rootProject.afterEvaluate {
+    startIntegrationServer.dependsOn(build)
+}
