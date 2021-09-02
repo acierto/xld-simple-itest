@@ -13,4 +13,4 @@ If you are going to configure it on a bare VM, you have to be sure you have the 
 
 The main piece of integration server configuration is specified in this block in `build.gradle` file. 
 For more information you read this blog: 
-[https://xebialabs.github.io/integration-server-gradle-plugin/blog/2021/09/01/run-integration-test](https://xebialabs.github.io/integration-server-gradle-plugin/blog/2021/09/01/run-integration-test)  
+[https://xebialabs.github.io/integration-server-gradle-plugin/blog/2021/09/02/run-integration-test](https://xebialabs.github.io/integration-server-gradle-plugin/blog/2021/09/02/run-integration-test)  
