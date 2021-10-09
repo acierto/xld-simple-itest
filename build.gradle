@@ -30,7 +30,7 @@ apply plugin: "integration.server"
 integrationServer {
     clis {
         cli {
-            version = "10.3.0"
+            version = "10.3.0-902.941"
         }
     }
     servers {
